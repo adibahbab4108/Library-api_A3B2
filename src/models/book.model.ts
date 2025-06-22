@@ -1,7 +1,7 @@
-import { model, Schema } from "mongoose";
-import { IBook } from "../interfaces/book.interface";
+import { Model, model, Schema } from "mongoose";
+import {BookMethods, IBook } from "../interfaces/book.interface";
 
-const bookSchema = new Schema<IBook>(
+const bookSchema = new Schema<IBook, Model<IBook>, BookMethods>(
   {
     title: { type: String, required: true },
     author: { type: String, required: true },
@@ -33,4 +33,8 @@ const bookSchema = new Schema<IBook>(
   { timestamps: true }
 );
 
-export const book = model<IBook>("book", bookSchema);
+bookSchema.method("updateAvailability", function updateAvailability() {
+  this.available = this.copies > 0;
+});
+
+export const book = model("book", bookSchema);

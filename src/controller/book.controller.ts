@@ -40,13 +40,17 @@ export const getAllBooks = async (req: Request, res: Response) => {
     .find(findByFilter)
     .sort({ [sortBy as string]: sort === "asc" ? 1 : -1 })
     .limit(limitNumber);
+
   res.send({ success: true, message: "Books retrieved successfully", data });
 };
 
 export const getBookById = async (req: Request, res: Response) => {
   const id = req.params.bookId;
   const data = await book.findById(id);
-  res.json({ success: true, message: "Book retrieved successfully", data });
+  
+  data
+    ? res.json({ success: true, message: "Book retrieved successfully", data })
+    : res.json({ success: false, message: "Book Not Found" });
 };
 
 export const updateBook = async (req: Request, res: Response) => {

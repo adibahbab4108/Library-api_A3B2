@@ -1,4 +1,4 @@
-export interface IBook {
+export interface IBook extends Document{
   title: string;
   author: string;
   genre:
@@ -12,4 +12,7 @@ export interface IBook {
   description: string;
   copies: number;
   available: boolean;
+}
+export interface BookMethods {
+  updateAvailability(): void;
 }
