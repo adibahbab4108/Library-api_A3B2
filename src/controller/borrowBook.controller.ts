@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { book } from "../models/book.model";
-import { borrowBook } from "../models/borrowBook.model";
+import { book } from "../models/book.model.js";
+import { borrowBook } from "../models/borrowBook.model.js";
 
 export const borrowBookHandler = async (
   req: Request,

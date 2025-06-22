@@ -1,5 +1,5 @@
 import express from "express";
-import { borrowBookHandler } from "../controller/borrowBook.controller";
+import { borrowBookHandler } from "../controller/borrowBook.controller.js";
 
 const borrowBookRoutes = express.Router();
 

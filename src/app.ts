@@ -1,7 +1,7 @@
 //  Express app setup and middleware configuration
 import express, { Application } from "express";
-import bookRoutes from "./routes/book.routes";
-import borrowBookRoutes from "./routes/borrowBook.routes";
+import bookRoutes from "./routes/book.routes.js";
+import borrowBookRoutes from "./routes/borrowBook.routes.js";
 const app: Application = express();
 
 app.use(express.json());
