@@ -7,7 +7,7 @@ interface Config {
   mongo_uri: string;
 }
 
-export const config: Config = {
+export const customConfig: Config = {
   port: Number(process.env.PORT) || 5000,
   node_env: process.env.NODE_ENV || "development",
   mongo_uri: (() => {

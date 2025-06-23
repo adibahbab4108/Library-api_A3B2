@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { IBorrowBook } from "../interfaces/borrowBook.interface.js";
+import { IBorrowBook } from "../interfaces/borrowBook.interface";
 
 const borrowBookSchema = new Schema<IBorrowBook>(
   {

@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
-import { book } from "../models/book.model.js";
-import { borrowBook } from "../models/borrowBook.model.js";
+import { borrowBook } from "../models/borrowBook.model";
+import { book } from "../models/book.model";
+
 
 export const borrowBookHandler = async (
   req: Request,
   res: Response
-): Promise<any> => {
+)=> {
   const { book: bookId, quantity, dueDate } = req.body;
   const bookExist = await book.findById(bookId);
 

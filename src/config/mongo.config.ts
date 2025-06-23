@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { config } from "./env.config.js";
-const { mongo_uri } = config;
+import { customConfig } from "./env.config";
+const { mongo_uri } = customConfig;
 
 export const connectToDatabase = async () => {
   try {

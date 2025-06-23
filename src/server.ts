@@ -1,9 +1,8 @@
-//  Server entry point (connects to DB, starts server)
-import app from "./app.js";
-import { connectToDatabase } from "./config/mongo.config.js";
-import { config } from "./config/env.config.js";
+import app from "./app";
+import { customConfig } from "./config/env.config";
+import { connectToDatabase } from "./config/mongo.config";
 
-const { port } = config;
+const { port } = customConfig;
 
 connectToDatabase()
   .then(() => {
@@ -13,5 +12,5 @@ connectToDatabase()
   })
   .catch((error) => {
     console.log("Failed to Start server", error);
-    process.exit(1);
+    // process.exit(1);
   });
