@@ -13,4 +13,9 @@ app.get("/", (req, res) => {
 app.use("/api", bookRoutes);
 app.use("/api", borrowBookRoutes);
 
+app.use((req, res, next) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
+
 export default app;

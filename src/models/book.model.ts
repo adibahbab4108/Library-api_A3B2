@@ -37,4 +37,13 @@ bookSchema.method("updateAvailability", function updateAvailability() {
   this.available = this.copies > 0;
 });
 
+//make available:true after new copies are added
+bookSchema.post("findOneAndUpdate", async function (doc) {
+  if (!doc) return;
+  const updatedCopies = doc.get("copies");
+  const availabeStatus = doc.get("available");
+  if (updatedCopies > 0 && availabeStatus === false) doc.set("available", true);
+  await doc.save();
+});
+
 export const Book = model("Book", bookSchema);
