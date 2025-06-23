@@ -1,8 +1,9 @@
 import express from "express";
-import { borrowBookHandler } from "../controller/borrowBook.controller";
+import { borrowBookHandler, getBorrowedBook } from "../controller/borrowBook.controller";
 
 const borrowBookRoutes = express.Router();
 
 borrowBookRoutes.post("/borrow", borrowBookHandler);
+borrowBookRoutes.get("/borrow", getBorrowedBook);
 
 export default borrowBookRoutes;

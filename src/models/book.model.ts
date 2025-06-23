@@ -37,4 +37,4 @@ bookSchema.method("updateAvailability", function updateAvailability() {
   this.available = this.copies > 0;
 });
 
-export const book = model("book", bookSchema);
+export const Book = model("Book", bookSchema);

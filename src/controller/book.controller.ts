@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import { book } from "../models/book.model";
+import { Book } from "../models/book.model";
 
 export const createBook = async (req: Request, res: Response) => {
   const data = req.body;
 
   try {
-    const bookExist = await book.findOne({ isbn: data.isbn });
+    const bookExist = await Book.findOne({ isbn: data.isbn });
 
     // if (bookExist) {
     //   res.status(409).json({ message: "Book already exists" });
     // }
 
-    const bookData = await book.create(data);
+    const bookData = await Book.create(data);
 
     res.status(201).json({
       success: true,
@@ -37,7 +37,7 @@ export const getAllBooks = async (req: Request, res: Response) => {
       findByFilter.genre = filter;
     }
 
-    const data = await book
+    const data = await Book
       .find(findByFilter)
       .sort({ [sortBy as string]: sort === "asc" ? 1 : -1 })
       .limit(limitNumber);
@@ -52,7 +52,7 @@ export const getBookById = async (req: Request, res: Response) => {
   const id = req.params.bookId;
 
   try {
-    const data = await book.findById(id);
+    const data = await Book.findById(id);
     if (data)
       res.json({ success: true, message: "Book retrieved successfully", data });
     else res.json({ success: false, message: "Book Not Found" });
@@ -66,7 +66,7 @@ export const updateBook = async (req: Request, res: Response) => {
   const bookData = req.body;
 
   try {
-    const updatedBook = await book.findByIdAndUpdate(
+    const updatedBook = await Book.findByIdAndUpdate(
       id,
       { $set: bookData },
       { new: true, runValidators: true }
@@ -104,7 +104,7 @@ export const updateBook = async (req: Request, res: Response) => {
 export const deleteBook = async (req: Request, res: Response) => {
   const id = req.params.bookId;
   try {
-    const data = await book.deleteOne({ _id: id });
+    const data = await Book.deleteOne({ _id: id });
     res.json({ success: true, message: "Book deleted successfully", data });
   } catch (error) {
     res.json({ success: false, message: "Cannot delete", error });
