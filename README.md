@@ -31,6 +31,6 @@ A RESTful API built using **Express**, **TypeScript**, and **MongoDB (Mongoose)*
 ### 3. Get book by Id
 ### 4. Update book
 ### 5. Delete book
-### 5. Borrow book (deduct count from bookCollection and save borrowbook data)
-### 6. Get borrowed book
-### 7. Get full summary of the  borrowed books and so on
+### 6. Borrow a book 
+### 7. Get borrowed book
+### 8. Get full summary of the  borrowed books and so on
