@@ -4,6 +4,6 @@ import { borrowBookHandler, getBorrowedBook } from "../controller/borrowBook.con
 const borrowBookRoutes = express.Router();
 
 borrowBookRoutes.post("/borrow", borrowBookHandler);
-borrowBookRoutes.get("/borrow", getBorrowedBook);
+borrowBookRoutes.get("/borrowed-books", getBorrowedBook);
 
 export default borrowBookRoutes;

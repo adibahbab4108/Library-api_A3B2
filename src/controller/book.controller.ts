@@ -3,13 +3,12 @@ import { Book } from "../models/book.model";
 
 export const createBook = async (req: Request, res: Response) => {
   const data = req.body;
-
   try {
     const bookExist = await Book.findOne({ isbn: data.isbn });
 
-    // if (bookExist) {
-    //   res.status(409).json({ message: "Book already exists" });
-    // }
+    if (bookExist) {
+      res.status(409).json({ message: "Book already exists" });
+    }
 
     const bookData = await Book.create(data);
 
@@ -30,15 +29,14 @@ export const createBook = async (req: Request, res: Response) => {
 export const getAllBooks = async (req: Request, res: Response) => {
   const { filter, sortBy = "createdAt", sort = "desc", limit } = req.query;
   const findByFilter: any = {};
-  const limitNumber: number = parseInt(limit as string, 10) || 5; // limit as string: Tells TypeScript “trust me, this is a string”. But in Js it's String(limit) which is type conversion
+  const limitNumber: number = parseInt(limit as string, 10);
 
   try {
     if (filter) {
       findByFilter.genre = filter;
     }
 
-    const data = await Book
-      .find(findByFilter)
+    const data = await Book.find(findByFilter)
       .sort({ [sortBy as string]: sort === "asc" ? 1 : -1 })
       .limit(limitNumber);
 
@@ -64,7 +62,6 @@ export const getBookById = async (req: Request, res: Response) => {
 export const updateBook = async (req: Request, res: Response) => {
   const id = req.params.bookId;
   const bookData = req.body;
-
   try {
     const updatedBook = await Book.findByIdAndUpdate(
       id,

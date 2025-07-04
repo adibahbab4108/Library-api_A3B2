@@ -29,6 +29,7 @@ const bookSchema = new Schema<IBook, Model<IBook>, BookMethods>(
       },
     },
     available: { type: Boolean, default: true },
+    coverImg:{type: String},
   },
   { timestamps: true }
 );
@@ -36,7 +37,10 @@ const bookSchema = new Schema<IBook, Model<IBook>, BookMethods>(
 bookSchema.method("updateAvailability", function updateAvailability() {
   this.available = this.copies > 0;
 });
-
+bookSchema.pre("save", function (next) {
+  this.available = this.copies > 0;
+  next();
+});
 //make available:true after new copies are added
 bookSchema.post("findOneAndUpdate", async function (doc) {
   if (!doc) return;

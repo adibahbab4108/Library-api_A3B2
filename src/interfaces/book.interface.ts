@@ -12,6 +12,7 @@ export interface IBook extends Document{
   description: string;
   copies: number;
   available: boolean;
+  coverImg?: string;
 }
 export interface BookMethods {
   updateAvailability(): void;
